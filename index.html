@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Dodo ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.start {
+  text-align: center;
+  color: white;
+}
+
+.start button {
+  margin-top: 20px;
+  padding: 12px 26px;
+  background: white;
+  color: #ff4d6d;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 24px;
+  width: 85%;
+  max-width: 430px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  display: none;
+}
+
+h1 {
+  color: #ff4d6d;
+}
+
+#text {
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 180px;
+}
+
+.heart {
+  font-size: 28px;
+  margin-top: 15px;
+  animation: beat 1.5s infinite;
+}
+
+@keyframes beat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+.float {
+  position: absolute;
+  font-size: 20px;
+  color: #ff4d6d;
+  animation: rise 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes rise {
+  0% { transform: translateY(100vh); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(-10vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="start" id="start">
+  <h2>This is for you, Dodo ❤️</h2>
+  <button onclick="begin()">Tap to open</button>
+</div>
+
+<div class="card" id="card">
+  <h1>Dodo ❤️</h1>
+  <div id="text"></div>
+  <div class="heart">💖</div>
+</div>
+
+<audio id="music" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Lee_Rosevere/Music_for_Podcasts/Lee_Rosevere_-_04_-_Thoughtful.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const lines = [
+  "I still can’t believe how beautifully you planned everything for my birthday.",
+  "Each little surprise, each effort — it all meant so much to me.",
+  "I don’t know how you manage to do this every time, Dodo.",
+  "For the last 11 months, you’ve been my constant.",
+  "You’ve listened to me, understood me,",
+  "and explained things again and again just to make me feel okay.",
+  "When I had my accident,",
+  "you were there without a second thought.",
+  "You cared, you worried, you stayed.",
+  "You make my everyday life feel special,",
+  "without even realising how much you do.",
+  "Every effort you make — big or small —",
+  "I see it, I feel it, and I truly appreciate it.",
+  "I’m sorry I couldn’t make your birthday",
+  "as special as you made mine.",
+  "But please know this —",
+  "having you in my life is something I’m deeply grateful for.",
+  "Thank you for everything, Dodo.",
+  "Always. ❤️"
+];
+
+let i = 0, j = 0;
+const speed = 45;
+const text = document.getElementById("text");
+
+function type() {
+  if (i < lines.length) {
+    if (j < lines[i].length) {
+      text.innerHTML += lines[i].charAt(j);
+      j++;
+      setTimeout(type, speed);
+    } else {
+      text.innerHTML += "<br><br>";
+      j = 0;
+      i++;
+      setTimeout(type, 700);
+    }
+  }
+}
+
+function begin() {
+  document.getElementById("start").style.display = "none";
+  document.getElementById("card").style.display = "block";
+  document.getElementById("music").play();
+  type();
+}
+
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "float";
+  h.innerHTML = "💗";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (4 + Math.random() * 4) + "s";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 600);
+</script>
+
+</body>
+  </html>
